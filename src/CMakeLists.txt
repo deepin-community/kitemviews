@@ -10,16 +10,30 @@ set_target_properties(KF5ItemViews PROPERTIES
 ecm_create_qm_loader(KF5ItemViews kitemviews5_qt)
 
 target_sources(KF5ItemViews PRIVATE
-  kcategorizedsortfilterproxymodel.cpp
-  kcategorizedview.cpp
-  kcategorydrawer.cpp
-  kextendableitemdelegate.cpp
-  kfilterproxysearchline.cpp
-  klistwidgetsearchline.cpp
-  ktreewidgetsearchline.cpp
-  ktreewidgetsearchlinewidget.cpp
-  kwidgetitemdelegate.cpp
-  kwidgetitemdelegatepool.cpp
+    kcategorizedsortfilterproxymodel.cpp
+    kcategorizedsortfilterproxymodel.h
+    kcategorizedsortfilterproxymodel_p.h
+    kcategorizedview.cpp
+    kcategorizedview.h
+    kcategorizedview_p.h
+    kcategorydrawer.cpp
+    kcategorydrawer.h
+    kextendableitemdelegate.cpp
+    kextendableitemdelegate.h
+    kfilterproxysearchline.cpp
+    kfilterproxysearchline.h
+    klistwidgetsearchline.cpp
+    klistwidgetsearchline.h
+    ktreewidgetsearchline.cpp
+    ktreewidgetsearchline.h
+    ktreewidgetsearchlinewidget.cpp
+    ktreewidgetsearchlinewidget.h
+    kwidgetitemdelegate.cpp
+    kwidgetitemdelegate.h
+    kwidgetitemdelegate_p.h
+    kwidgetitemdelegatepool.cpp
+    kwidgetitemdelegatepool_p.h
+
 )
 
 ecm_qt_declare_logging_category(KF5ItemViews
@@ -40,9 +54,9 @@ ecm_generate_export_header(KF5ItemViews
 )
 
 
-target_include_directories(KF5ItemViews INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF5}/KItemViews>")
+target_include_directories(KF5ItemViews INTERFACE "$<INSTALL_INTERFACE:${KDE_INSTALL_INCLUDEDIR_KF}/KItemViews>")
 
-target_link_libraries(KF5ItemViews PUBLIC Qt5::Widgets)
+target_link_libraries(KF5ItemViews PUBLIC Qt${QT_MAJOR_VERSION}::Widgets)
 
 ecm_generate_headers(KItemViews_HEADERS
   HEADER_NAMES
@@ -86,7 +100,7 @@ install(TARGETS KF5ItemViews EXPORT KF5ItemViewsTargets ${KF5_INSTALL_TARGETS_DE
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/kitemviews_export.h
   ${KItemViews_HEADERS}
-  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF5}/KItemViews COMPONENT Devel
+  DESTINATION ${KDE_INSTALL_INCLUDEDIR_KF}/KItemViews COMPONENT Devel
 )
 
 if(BUILD_DESIGNERPLUGIN)
@@ -121,7 +135,7 @@ if(BUILD_QCH)
 endif()
 
 include(ECMGeneratePriFile)
-ecm_generate_pri_file(BASE_NAME KItemViews LIB_NAME KF5ItemViews DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF5}/KItemViews)
+ecm_generate_pri_file(BASE_NAME KItemViews LIB_NAME KF5ItemViews DEPS "widgets" FILENAME_VAR PRI_FILENAME INCLUDE_INSTALL_DIR ${KDE_INSTALL_INCLUDEDIR_KF}/KItemViews)
 install(FILES ${PRI_FILENAME} DESTINATION ${ECM_MKSPECS_INSTALL_DIR})
 
 ecm_qt_install_logging_categories(
